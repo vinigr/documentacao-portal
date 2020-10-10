@@ -1,0 +1,418 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Portal de serviços UniFTC",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Autenticação",
+      "description": "Para se autenticar na API"
+    },
+    {
+      "name": "Professor",
+      "description": ""
+    },
+    {
+      "name": "Coordenador",
+      "description": ""
+    },
+    {
+      "name": "Diretor",
+      "description": ""
+    },
+    {
+      "name": "Cliente/Paciente",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/autenticacao": {
+      "post": {
+        "tags": [
+          "Autenticação"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login bem sucedido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Login não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cadastro": {
+      "post": {
+        "tags": [
+          "Autenticação"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cadastro"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cadastro realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "E-mail já utilizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/professor/servicos/{idservico}/agendamentos": {
+      "post": {
+        "tags": [
+          "Professor"
+        ]
+      }
+    },
+    "/professor/servicos/{idservico}/agendamentos/{idagendamento}": {
+      "get": {
+        "tags": [
+          "Professor"
+        ]
+      }
+    },
+    "/professor/servicos/{idservico}/agendamentos/{idagendamento}": {
+      "delete": {
+        "tags": [
+          "Professor"
+        ]
+      }
+    },
+    "/professor/servicos/{idservico}/agendamento/{idagendamento}/observacao": {
+      "post": {
+        "tags": [
+          "Professor"
+        ]
+      }
+    },
+    "/diretor": {},
+    "/master": {},
+    "/coordenador/categoria/{idcategoria}/servicos": {
+      "post": {
+        "tags": [
+          "Coordenador"
+        ]
+      }
+    },
+    "/coordenador/categoria/{idcategoria}/servicos/{idservico}": {
+      "delete": {
+        "tags": [
+          "Coordenador"
+        ]
+      }
+    },
+    "/cliente/unidades": {
+      "get": {
+        "tags": [
+          "Cliente/Paciente"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das unidades",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Unidades"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/unidades/{idunidade}/categorias": {
+      "get": {
+        "tags": [
+          "Cliente/Paciente"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das categorias",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categorias"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/servicos": {
+      "get": {
+        "tags": [
+          "Cliente/Paciente"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações dos servicos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Servicos"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cliente/servicos/{idservico}/agendas": {
+      "get": {
+        "tags": [
+          "Cliente/Paciente"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das agendas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendas"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Login": {
+        "required": [
+          "email",
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "joaozinho_sk8_lindo@ftc.edu.br"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123456789"
+          }
+        }
+      },
+      "Cadastro": {
+        "required": [
+          "nome",
+          "email",
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "João Paulo"
+          },
+          "email": {
+            "type": "string",
+            "example": "joaozinho@ftc.edu.br"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123456789"
+          }
+        }
+      },
+      "Token": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+          }
+        }
+      },
+      "Erro": {
+        "type": "object",
+        "properties": {
+          "mensagem": {
+            "type": "string",
+            "example": "Não foi possível realizar Y devido a X"
+          }
+        }
+      },
+      "Categoria": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Odontologia"
+          }
+        }
+      },
+      "Categorias": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Categoria"
+        }
+      },
+      "Servico": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Consulta"
+          }
+        }
+      },
+      "Servicos": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Servico"
+        }
+      },
+      "Unidade": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "UniFTC Vitória da Conquista"
+          }
+        }
+      },
+      "Unidades": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Unidade"
+        }
+      },
+      "Agendas": {}
+    },
+    "securitySchemes": {
+      "authorization": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}
