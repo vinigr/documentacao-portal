@@ -132,28 +132,142 @@
       "post": {
         "tags": [
           "Professor"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AbrirAgenda"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Abertura de agenda realizada com sucesso"
+          }
+        },
+        "security": [{"autenticacao": []}]
       }
     },
     "/professor/servicos/{idservico}/agendamentos/{idagendamento}": {
       "get": {
         "tags": [
           "Professor"
-        ]
-      }
-    },
-    "/professor/servicos/{idservico}/agendamentos/{idagendamento}": {
+        ],
+        "responses": {
+          "200": { 
+            "description": "Busca do agendamento realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agenda"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Professor"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditarAgendamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Busca do agendamento realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agenda"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Professor"
-        ]
+        ], 
+        "responses": {
+          "204": {
+            "description": "Cancelar agendamento"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        }
       }
     },
-    "/professor/servicos/{idservico}/agendamento/{idagendamento}/observacao": {
+    "/professor/agendamentos": {
       "post": {
         "tags": [
           "Professor"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Intervalo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retorno com os agendamentos de quem o professo é responsável",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendas"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [{"autenticacao": []}]
       }
     },
     "/diretor": {},
@@ -290,6 +404,18 @@
     }
   },
   "components": {
+    "responses": {
+      "Erro": {
+        "description": "Rota não autorizada",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Erro"
+            }
+          }
+        }
+      } 
+    },
     "schemas": {
       "Login": {
         "required": [
@@ -405,13 +531,143 @@
           "$ref": "#/components/schemas/Unidade"
         }
       },
-      "Agendas": {}
+      "Agendas": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Agenda"
+        }
+      },
+      "Agenda": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 777
+          },
+          "data_hora": {
+            "type": "string",
+            "example": "2020-10-17T13:25:42.171Z"
+          },
+          "atentende": {
+            "type": "string"
+          },
+          "cliente": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": "11"
+              },
+              "nome": {
+                "type": "string",
+                "example": "Bruno Henrique"
+              }
+            }
+          },
+          "professor_responsavel": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 12
+              },
+              "nome": {
+                "type": "string",
+                "example": "Maricota do Sobrenome"
+              }
+            }
+          },
+          "responsavel_cancelamento": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 4
+              },
+              "nome": {
+                "type": "string",
+                "example": "Jaiminho Carteiro"
+              }
+            }
+          },
+          "observacao": {
+            "type": "string",
+            "example": "Triste fim para Policarpo Quaresma"
+          },
+          "justificativa_cancelamento": {
+            "type": "string",
+            "example": "Professor morreu"
+          },
+          "atendido": {
+            "type": "boolean",
+            "example": true
+          } 
+        }
+      }, 
+      "AbrirAgenda": {
+        "type": "object",
+        "properties": {
+          "hora_inicial": {
+            "description": "Hora de inicio dos atendimentos no formato hh:mm",
+            "type": "string",
+            "example": "09:50"
+          },
+          "hora_final": {
+            "description": "Hora de encerramento dos atendimentos no formato hh:mm",
+            "type": "string",
+            "example": "18:30"
+          },
+          "duracao": {
+            "description": "Duração de cada atendimento em minutos",
+            "type": "integer",
+            "example": 30
+          },
+          "id_servico": {
+            "type": "integer",
+            "example": "12"
+          }
+        },
+        "required": ["hora_inicial", "hora_final", "duracao", "id_servico"]
+      },
+      "EditarAgendamento": {
+        "type": "object",
+        "properties": {
+          "observacao": {
+            "type": "string",
+            "example": "Triste fim para Policarpo Quaresma"
+          },
+          "atentende": {
+            "type": "string",
+            "example": "Maurício Isla"
+          },
+          "atendido": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "Dia": {
+        "type": "string",
+        "example": "2020-10-30",
+        "description": "Data dos atendimentos no formato YYYY-MM-DD"
+      },
+      "Intervalo": {
+        "type": "object",
+        "properties": {
+          "data_inicial": {
+            "$ref": "#/components/schemas/Dia"
+          },
+          "data_final": {
+            "$ref": "#/components/schemas/Dia"
+          }
+        }
+      }
     },
     "securitySchemes": {
-      "authorization": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header"
+      "autenticacao": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
