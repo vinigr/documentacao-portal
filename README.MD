@@ -26,15 +26,16 @@ Atores:
 
 ### Casos de uso do administrador master:
 
-- [ ] O administrador master deve ser capaz de fazer login
-- [ ] O administrador master deve ser capaz de postar mensagens no mural
-- [ ] O administrador master deve ser capaz de cadastrar unidades
-- [ ] O administrador master deve ser capaz de criar categorias de serviços
+- [x] O administrador master deve ser capaz de fazer login
+- [x] O administrador master deve ser capaz de postar mensagens no mural
+- [x] O administrador master deve ser capaz de cadastrar unidades
+- [x] O administrador master deve ser capaz de criar categorias de serviços
 - [ ] O administrador master deve ser capaz de criar perfis de usuários
+- [x] O administrador master deve ser capaz de editar tipos de usuários
 
 ### Casos de uso do coordenador:
 
-- [ ] O coordenador deve ser capaz de fazer login
+- [x] O coordenador deve ser capaz de fazer login
 - [ ] O coordenador deve ser capaz de criar serviços
 - [ ] O coordenador deve ser capaz de postar mensagens no mural
 - [ ] O coordenador deve ser capaz de abrir agenda para os serviços
@@ -51,7 +52,7 @@ Atores:
 
 ### Casos de uso do diretor:
 
-- [ ] O diretor deve ser capaz de fazer login
+- [x] O diretor deve ser capaz de fazer login
 - [ ] O diretor deve ser capaz de gerar relatórios dos serviços marcados e realizados por período
 
 <sup>Made with 😡 by Daniel Costa Carvalho, Vinícios Oliveira Grama & Pedro Henrique Ribeiro Silva<sup>

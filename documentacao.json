@@ -15,20 +15,19 @@
       "description": "Para se autenticar na API"
     },
     {
-      "name": "Professor",
-      "description": ""
+      "name": "Professor"
     },
     {
-      "name": "Coordenador",
-      "description": ""
+      "name": "Coordenador"
     },
     {
-      "name": "Diretor",
-      "description": ""
+      "name": "Diretor"
     },
     {
-      "name": "Cliente/Paciente",
-      "description": ""
+      "name": "Cliente/Paciente"
+    },
+    {
+      "name": "Administrador master"
     }
   ],
   "paths": {
@@ -147,7 +146,11 @@
             "description": "Abertura de agenda realizada com sucesso"
           }
         },
-        "security": [{"autenticacao": []}]
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/professor/servicos/{idservico}/agendamentos/{idagendamento}": {
@@ -156,7 +159,7 @@
           "Professor"
         ],
         "responses": {
-          "200": { 
+          "200": {
             "description": "Busca do agendamento realizada com sucesso",
             "content": {
               "application/json": {
@@ -175,7 +178,12 @@
           "500": {
             "$ref": "#/components/responses/Erro"
           }
-        }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       },
       "put": {
         "tags": [
@@ -191,7 +199,7 @@
           }
         },
         "responses": {
-          "200": { 
+          "200": {
             "description": "Busca do agendamento realizada com sucesso",
             "content": {
               "application/json": {
@@ -210,15 +218,21 @@
           "500": {
             "$ref": "#/components/responses/Erro"
           }
-        }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       },
       "delete": {
+        "description": "Cancelar agendamento",
         "tags": [
           "Professor"
-        ], 
+        ],
         "responses": {
           "204": {
-            "description": "Cancelar agendamento"
+            "description": "Agendamento cancelado com sucesso!"
           },
           "401": {
             "$ref": "#/components/responses/Erro"
@@ -229,7 +243,12 @@
           "500": {
             "$ref": "#/components/responses/Erro"
           }
-        }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/professor/agendamentos": {
@@ -248,7 +267,7 @@
         },
         "responses": {
           "200": {
-            "description": "Retorno com os agendamentos de quem o professo é responsável",
+            "description": "Retorno com os agendamentos de quem o professor é responsável",
             "content": {
               "application/json": {
                 "schema": {
@@ -267,11 +286,334 @@
             "$ref": "#/components/responses/Erro"
           }
         },
-        "security": [{"autenticacao": []}]
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/diretor": {},
-    "/master": {},
+    "/master/unidade": {
+      "post": {
+        "tags": [
+          "Administrador master"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarUnidade"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Unidade criada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/master/unidade/{idunidade}": {
+      "put": {
+        "tags": [
+          "Administrador master"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditarUnidade"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Unidade editada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Deletar categoria",
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "201": {
+            "description": "Cat editada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/master/categoria": {
+      "post": {
+        "tags": [
+          "Administrador master"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarCategoria"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Categoria criada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/master/categoria/{idcategoria}": {
+      "put": {
+        "tags": [
+          "Administrador master"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditarCategoria"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Categoria editada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Deletar categoria",
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "201": {
+            "description": "Categoria deletada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/master/postagem": {
+      "post": {
+        "tags": [
+          "Administrador master"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MasterCriarPostagem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Postagem criada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/master/postagem/{idpostagem}": {
+      "put": {
+        "tags": [
+          "Administrador master"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MasterEditarPostagem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Postagem editada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Deletar postagem",
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "201": {
+            "description": "Postagem deletada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/master/usuario": {
+      "put": {
+        "tags": [
+          "Administrador master"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditarTipoUsuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário editado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
     "/coordenador/categoria/{idcategoria}/servicos": {
       "post": {
         "tags": [
@@ -414,7 +756,7 @@
             }
           }
         }
-      } 
+      }
     },
     "schemas": {
       "Login": {
@@ -601,9 +943,9 @@
           "atendido": {
             "type": "boolean",
             "example": true
-          } 
+          }
         }
-      }, 
+      },
       "AbrirAgenda": {
         "type": "object",
         "properties": {
@@ -627,7 +969,12 @@
             "example": "12"
           }
         },
-        "required": ["hora_inicial", "hora_final", "duracao", "id_servico"]
+        "required": [
+          "hora_inicial",
+          "hora_final",
+          "duracao",
+          "id_servico"
+        ]
       },
       "EditarAgendamento": {
         "type": "object",
@@ -659,6 +1006,137 @@
           },
           "data_final": {
             "$ref": "#/components/schemas/Dia"
+          }
+        }
+      },
+      "CriarUnidade": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "UniFTC Vitória da Conquista"
+          },
+          "id_diretor": {
+            "type": "integer",
+            "example": 15
+          }
+        },
+        "required": [
+          "nome"
+        ]
+      },
+      "EditarUnidade": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "UniFTC Vitória da Conquista"
+          },
+          "id_diretor": {
+            "type": "integer",
+            "example": 15
+          }
+        }
+      },
+      "CriarCategoria": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Odontologia"
+          },
+          "id_unidade": {
+            "type": "integer",
+            "example": 10
+          },
+          "id_coordenador": {
+            "type": "integer",
+            "example": 15
+          }
+        },
+        "required": [
+          "nome",
+          "id_unidade"
+        ]
+      },
+      "EditarCategoria": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Odontologia"
+          },
+          "id_unidade": {
+            "type": "integer",
+            "example": 10
+          },
+          "id_coordenador": {
+            "type": "integer",
+            "example": 15
+          }
+        }
+      },
+      "MasterCriarPostagem": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "example": "Novidade"
+          },
+          "mensagem": {
+            "type": "string"
+          },
+          "id_unidade": {
+            "type": "integer",
+            "example": 10
+          },
+          "ativa": {
+            "type": "boolean"
+          },
+          "data_expiracao": {
+            "type": "string",
+            "example": "2020-10-17T13:25:42.171Z"
+          }
+        },
+        "required": [
+          "titulo",
+          "mensagem"
+        ]
+      },
+      "MasterEditarPostagem": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "example": "Novidade"
+          },
+          "mensagem": {
+            "type": "string"
+          },
+          "id_unidade": {
+            "type": "integer",
+            "example": 10
+          },
+          "ativa": {
+            "type": "boolean"
+          },
+          "data_expiracao": {
+            "type": "string",
+            "example": "2020-10-17T13:25:42.171Z"
+          }
+        }
+      },
+      "EditarTipoUsuario": {
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "type": "string",
+            "description": "O tipo que usuário deve ser alterado",
+            "enum": [
+              "Coordenador",
+              "Diretor",
+              "Professor"
+            ]
           }
         }
       }
