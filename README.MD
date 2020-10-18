@@ -8,7 +8,7 @@ Documentação seguindo as especificações do openAPI, com base nas especifica�
 
 Atores:
 
-- [ ] Cliente/Paciente (Usuário final)
+- [x] Cliente/Paciente (Usuário final)
 - [ ] Administrador master
 - [ ] Coordenador
 - [x] Professor
@@ -18,11 +18,11 @@ Atores:
 
 - [x] O usuário deve ser capaz de fazer o seu cadastro
 - [x] O usuário deve ser capaz de fazer login
-- [ ] O usuário deve ser capaz de visualizar mensagens do mural
-- [ ] O usuário deve ser capaz de visualizar os serviços prestados
-- [ ] O usuário deve ser capaz de visualizar os horários disponíveis para agendamento de um serviço
-- [ ] O usuário deve ser capaz de agendar um serviço
-- [ ] O usuário deve ser capaz de cancelar o agendamento
+- [x] O usuário deve ser capaz de visualizar mensagens do mural
+- [x] O usuário deve ser capaz de visualizar os serviços prestados
+- [x] O usuário deve ser capaz de visualizar os horários disponíveis para agendamento de um serviço
+- [x] O usuário deve ser capaz de agendar um serviço
+- [x] O usuário deve ser capaz de cancelar o agendamento
 
 ### Casos de uso do administrador master:
 

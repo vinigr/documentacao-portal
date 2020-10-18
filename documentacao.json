@@ -329,6 +329,40 @@
         ]
       }
     },
+    "/master/unidades": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das unidades",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterUnidades"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
     "/master/unidade/{idunidade}": {
       "put": {
         "tags": [
@@ -657,6 +691,35 @@
         }
       }
     },
+    "/cliente/unidades/{idunidade}/postagens": {
+      "get": {
+        "tags": [
+          "Cliente/Paciente"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com postagens que podem ser visualizadas pelos clientes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostagemCliente"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/cliente/unidades/{idunidade}/categorias": {
       "get": {
         "tags": [
@@ -686,7 +749,7 @@
         }
       }
     },
-    "/cliente/servicos": {
+    "/cliente/categoria/{idcategoria}/servicos": {
       "get": {
         "tags": [
           "Cliente/Paciente"
@@ -716,17 +779,26 @@
       }
     },
     "/cliente/servicos/{idservico}/agendas": {
-      "get": {
+      "post": {
         "tags": [
           "Cliente/Paciente"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuscaAgendas"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Retorno com informações das agendas",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Agendas"
+                  "$ref": "#/components/schemas/AgendasBuscaCliente"
                 }
               }
             }
@@ -742,6 +814,99 @@
             }
           }
         }
+      }
+    },
+    "/cliente/servicos/agendamento/{idagenda}": {
+      "post": {
+        "tags": [
+          "Cliente/Paciente"
+        ],
+        "responses": {
+          "201": {
+            "description": "Agendamento realizado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/cliente/agendamentos": {
+      "get": {
+        "tags": [
+          "Cliente/Paciente"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações dos agendamentos realizados pelo cliente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgendasCliente"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/cliente/agendamento/{idagendamento}/cancelar": {
+      "post": {
+        "description": "Utilizar quando o cliente desejar cancelar um agendamento",
+        "tags": [
+          "Cliente/Paciente"
+        ],
+        "responses": {
+          "201": {
+            "description": "Agendamento cancelado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     }
   },
@@ -938,7 +1103,7 @@
           },
           "justificativa_cancelamento": {
             "type": "string",
-            "example": "Professor morreu"
+            "example": "Professor não pode comparecer"
           },
           "atendido": {
             "type": "boolean",
@@ -1038,6 +1203,59 @@
           }
         }
       },
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Diego Alves"
+          },
+          "email": {
+            "type": "string",
+            "example": "teste@ftc.edu.br"
+          },
+          "tipo": {
+            "type": "string",
+            "example": "teste@ftc.edu.br"
+          }
+        }
+      },
+      "MasterUnidade": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "UniFTC Vitória da Conquista"
+          },
+          "diretor": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": "12"
+              },
+              "nome": {
+                "type": "string",
+                "example": "Filipe Luís"
+              }
+            }
+          }
+        }
+      },
+      "MasterUnidades": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MasterUnidade"
+        }
+      },
       "CriarCategoria": {
         "type": "object",
         "properties": {
@@ -1074,6 +1292,35 @@
             "type": "integer",
             "example": 15
           }
+        }
+      },
+      "Postagem": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "example": "Novidade"
+          },
+          "mensagem": {
+            "type": "string"
+          },
+          "id_unidade": {
+            "type": "integer",
+            "example": 10
+          },
+          "ativa": {
+            "type": "boolean"
+          },
+          "data_expiracao": {
+            "type": "string",
+            "example": "2020-10-17T13:25:42.171Z"
+          }
+        }
+      },
+      "Postagens": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Postagem"
         }
       },
       "MasterCriarPostagem": {
@@ -1138,6 +1385,100 @@
               "Professor"
             ]
           }
+        }
+      },
+      "PostagemCliente": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string",
+            "example": "Novidade"
+          },
+          "mensagem": {
+            "type": "string"
+          }
+        }
+      },
+      "PostagensCliente": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/PostagemCliente"
+        }
+      },
+      "AgendaCliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 777
+          },
+          "data_hora": {
+            "type": "string",
+            "example": "2020-10-17T13:25:42.171Z"
+          },
+          "atentende": {
+            "type": "string"
+          },
+          "responsavel_cancelamento": {
+            "type": "object",
+            "properties": {
+              "nome": {
+                "type": "string",
+                "example": "Jaiminho Carteiro"
+              }
+            }
+          },
+          "justificativa_cancelamento": {
+            "type": "string",
+            "example": "Professor não pode comparecer"
+          },
+          "atendido": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "AgendasCliente": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/AgendaCliente"
+        }
+      },
+      "BuscaAgendas": {
+        "type": "object",
+        "properties": {
+          "mes": {
+            "type": "string",
+            "description": "Mês que deseja buscar os serviços no formato YYYY-MM",
+            "example": "2020-10"
+          }
+        }
+      },
+      "AgendaBuscaCliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 777
+          },
+          "data_hora": {
+            "type": "string",
+            "example": "2020-10-17T13:25:42.171Z"
+          },
+          "duracao": {
+            "description": "Duração de cada atendimento em minutos",
+            "type": "integer",
+            "example": 30
+          },
+          "atentende": {
+            "type": "string"
+          }
+        }
+      },
+      "AgendasBuscaCliente": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/AgendaBuscaCliente"
         }
       }
     },
