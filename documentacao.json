@@ -579,7 +579,7 @@
         ]
       }
     },
-    "/master/usuario": {
+    "/master/usuario/{idusuario}": {
       "put": {
         "tags": [
           "Administrador master"
