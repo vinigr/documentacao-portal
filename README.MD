@@ -36,8 +36,8 @@ Atores:
 ### Casos de uso do coordenador:
 
 - [x] O coordenador deve ser capaz de fazer login
-- [ ] O coordenador deve ser capaz de criar serviços
-- [ ] O coordenador deve ser capaz de postar mensagens no mural
+- [x] O coordenador deve ser capaz de criar serviços
+- [x] O coordenador deve ser capaz de postar mensagens no mural
 - [ ] O coordenador deve ser capaz de abrir agenda para os serviços
 - [ ] O coordenador deve ser capaz de gerar relatórios de agendamentos
 

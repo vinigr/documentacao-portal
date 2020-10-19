@@ -15,19 +15,19 @@
       "description": "Para se autenticar na API"
     },
     {
-      "name": "Professor"
-    },
-    {
-      "name": "Coordenador"
-    },
-    {
-      "name": "Diretor"
+      "name": "Administrador master"
     },
     {
       "name": "Cliente/Paciente"
     },
     {
-      "name": "Administrador master"
+      "name": "Coordenador"
+    },
+    {
+      "name": "Professor"
+    },
+    {
+      "name": "Diretor"
     }
   ],
   "paths": {
@@ -199,15 +199,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "Busca do agendamento realizada com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Agenda"
-                }
-              }
-            }
+          "204": {
+            "description": "Agendamento editado com sucesso!"
           },
           "401": {
             "$ref": "#/components/responses/Erro"
@@ -363,7 +356,7 @@
         ]
       }
     },
-    "/master/unidade/{idunidade}": {
+    "/master/unidades/{idunidade}": {
       "put": {
         "tags": [
           "Administrador master"
@@ -378,7 +371,7 @@
           }
         },
         "responses": {
-          "201": {
+          "204": {
             "description": "Unidade editada com sucesso!"
           },
           "401": {
@@ -403,8 +396,8 @@
           "Administrador master"
         ],
         "responses": {
-          "201": {
-            "description": "Cat editada com sucesso!"
+          "204": {
+            "description": "Categoria editada com sucesso!"
           },
           "401": {
             "$ref": "#/components/responses/Erro"
@@ -414,6 +407,46 @@
           },
           "500": {
             "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/master/unidades/{idunidade}/categorias": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das categorias",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categorias"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -438,7 +471,7 @@
           }
         },
         "responses": {
-          "201": {
+          "204": {
             "description": "Categoria criada com sucesso!"
           },
           "401": {
@@ -458,7 +491,7 @@
         ]
       }
     },
-    "/master/categoria/{idcategoria}": {
+    "/master/categorias/{idcategoria}": {
       "put": {
         "tags": [
           "Administrador master"
@@ -473,7 +506,7 @@
           }
         },
         "responses": {
-          "201": {
+          "204": {
             "description": "Categoria editada com sucesso!"
           },
           "401": {
@@ -518,6 +551,42 @@
         ]
       }
     },
+    "/master/unidades/{id_unidade}/postagens": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "description": "Todas as postagens",
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das postagens da unidade",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Postagens"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/master/postagem": {
       "post": {
         "tags": [
@@ -527,7 +596,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MasterCriarPostagem"
+                "$ref": "#/components/schemas/CriarPostagem"
               }
             }
           }
@@ -562,7 +631,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MasterEditarPostagem"
+                "$ref": "#/components/schemas/EditarPostagem"
               }
             }
           }
@@ -648,17 +717,303 @@
         ]
       }
     },
-    "/coordenador/categoria/{idcategoria}/servicos": {
-      "post": {
+    "/coordenador/unidades": {
+      "get": {
         "tags": [
           "Coordenador"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com as unidades em que o coordenador exerce o cargo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterUnidades"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
         ]
       }
     },
-    "/coordenador/categoria/{idcategoria}/servicos/{idservico}": {
-      "delete": {
+    "/coordenador/categorias": {
+      "get": {
         "tags": [
           "Coordenador"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das categorias",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categorias"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/coordenador/categorias/{idcategoria}/servicos": {
+      "post": {
+        "tags": [
+          "Coordenador"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarServico"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Serviço criado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/coordenador/categorias/{idcategoria}/servicos/{idservico}": {
+      "put": {
+        "tags": [
+          "Coordenador"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditarServico"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Serviço editado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Deletar serviço",
+        "tags": [
+          "Coordenador"
+        ],
+        "responses": {
+          "204": {
+            "description": "Serviço deletado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/coordenador/postagens": {
+      "get": {
+        "tags": [
+          "Coordenador"
+        ],
+        "description": "Postagens relacionadas as categorias em que o usuário é o coordenador",
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das postagens",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Postagens"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/coordenador/postagem": {
+      "post": {
+        "tags": [
+          "Coordenador"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CriarPostagem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Postagem criada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/coordenador/postagens/{idpostagem}": {
+      "put": {
+        "tags": [
+          "Coordenador"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditarPostagem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Postagem editada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Deletar postagem",
+        "tags": [
+          "Coordenador"
+        ],
+        "responses": {
+          "201": {
+            "description": "Postagem deletada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
         ]
       }
     },
@@ -749,7 +1104,7 @@
         }
       }
     },
-    "/cliente/categoria/{idcategoria}/servicos": {
+    "/cliente/categorias/{idcategoria}/servicos": {
       "get": {
         "tags": [
           "Cliente/Paciente"
@@ -882,7 +1237,7 @@
         ]
       }
     },
-    "/cliente/agendamento/{idagendamento}/cancelar": {
+    "/cliente/agendamentos/{idagendamento}/cancelar": {
       "post": {
         "description": "Utilizar quando o cliente desejar cancelar um agendamento",
         "tags": [
@@ -1323,7 +1678,7 @@
           "$ref": "#/components/schemas/Postagem"
         }
       },
-      "MasterCriarPostagem": {
+      "CriarPostagem": {
         "type": "object",
         "properties": {
           "titulo": {
@@ -1333,7 +1688,7 @@
           "mensagem": {
             "type": "string"
           },
-          "id_unidade": {
+          "id_categoria": {
             "type": "integer",
             "example": 10
           },
@@ -1350,7 +1705,7 @@
           "mensagem"
         ]
       },
-      "MasterEditarPostagem": {
+      "EditarPostagem": {
         "type": "object",
         "properties": {
           "titulo": {
@@ -1360,7 +1715,7 @@
           "mensagem": {
             "type": "string"
           },
-          "id_unidade": {
+          "id_categoria": {
             "type": "integer",
             "example": 10
           },
@@ -1479,6 +1834,36 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/AgendaBuscaCliente"
+        }
+      },
+      "CriarServico": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Consulta"
+          },
+          "id_categoria": {
+            "type": "integer",
+            "example": 10
+          }
+        },
+        "required": [
+          "nome",
+          "id_categoria"
+        ]
+      },
+      "EditarServico": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Consulta"
+          },
+          "id_categoria": {
+            "type": "integer",
+            "example": 10
+          }
         }
       }
     },
