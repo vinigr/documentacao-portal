@@ -293,6 +293,48 @@
         ]
       }
     },
+    "/diretor/unidade/{idunidade}/relatorio": {
+      "post": {
+        "tags": [
+          "Diretor"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FilterRel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retorno com os agendamentos realizados ou marcados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendas"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
     "/diretor": {},
     "/master/unidade": {
       "post": {
@@ -1171,6 +1213,33 @@
           },
           "data_final": {
             "$ref": "#/components/schemas/Dia"
+          }
+        }
+      },
+      "FilterStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "1"
+          },
+          "status": {
+            "type": "string",
+            "example": "Realizadas"
+          }
+        }
+      },
+      "FilterRel": {
+        "type": "object",
+        "properties": {
+          "data_inicial": {
+            "$ref": "#/components/schemas/Dia"
+          },
+          "data_final": {
+            "$ref": "#/components/schemas/Dia"
+          },
+          "status": {
+            "$ref": "#/components/schemas/FilterStatus"
           }
         }
       },
