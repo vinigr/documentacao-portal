@@ -313,7 +313,12 @@
           "500": {
             "$ref": "#/components/responses/Erro"
           }
-        }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/master/unidades": {
@@ -593,7 +598,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/master/postagem": {
@@ -1131,7 +1141,12 @@
           "500": {
             "$ref": "#/components/responses/Erro"
           }
-        }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/coordenador/relatorio/cancelados/servicos": {
@@ -1166,7 +1181,12 @@
           "500": {
             "$ref": "#/components/responses/Erro"
           }
-        }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/coordenador/relatorio/cancelados/servicos/{idservico}": {
@@ -1201,7 +1221,12 @@
           "500": {
             "$ref": "#/components/responses/Erro"
           }
-        }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/cliente/unidades": {
