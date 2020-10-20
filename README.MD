@@ -9,10 +9,10 @@ Documentação seguindo as especificações do openAPI, com base nas especifica�
 Atores:
 
 - [x] Cliente/Paciente (Usuário final)
-- [ ] Administrador master
-- [ ] Coordenador
+- [x] Administrador master
+- [x] Coordenador
 - [x] Professor
-- [ ] Diretor
+- [x] Diretor
 
 ### Casos de uso do cliente/paciente:
 
@@ -30,16 +30,17 @@ Atores:
 - [x] O administrador master deve ser capaz de postar mensagens no mural
 - [x] O administrador master deve ser capaz de cadastrar unidades
 - [x] O administrador master deve ser capaz de criar categorias de serviços
-- [ ] O administrador master deve ser capaz de criar perfis de usuários
-- [x] O administrador master deve ser capaz de editar tipos de usuários
+- [x] O administrador master deve ser capaz de criar usuários
+- [x] O administrador master deve ser capaz de remover usuários
+- [x] O administrador master deve ser capaz de editar usuários
 
 ### Casos de uso do coordenador:
 
 - [x] O coordenador deve ser capaz de fazer login
 - [x] O coordenador deve ser capaz de criar serviços
 - [x] O coordenador deve ser capaz de postar mensagens no mural
-- [ ] O coordenador deve ser capaz de abrir agenda para os serviços
-- [ ] O coordenador deve ser capaz de gerar relatórios de agendamentos
+- [x] O coordenador deve ser capaz de abrir agenda para os serviços
+- [x] O coordenador deve ser capaz de gerar relatórios de agendamentos
 
 ### Casos de uso do professor:
 
@@ -53,6 +54,6 @@ Atores:
 ### Casos de uso do diretor:
 
 - [x] O diretor deve ser capaz de fazer login
-- [ ] O diretor deve ser capaz de gerar relatórios dos serviços marcados e realizados por período
+- [x] O diretor deve ser capaz de gerar relatórios dos serviços marcados e realizados por período
 
 <sup>Made with 😡 by Daniel Costa Carvalho, Vinícios Oliveira Grama & Pedro Henrique Ribeiro Silva<sup>
