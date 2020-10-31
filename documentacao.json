@@ -162,6 +162,40 @@
         ]
       }
     },
+    "/professor/servicos": {
+      "get": {
+        "description": "Busca dos serviços vinculados ao professor",
+        "tags": [
+          "Professor"
+        ],
+        "responses": {
+          "200": {
+            "description": "Busca dos serviços realizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Servicos"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
     "/professor/servicos/{idservico}/agendamentos/{idagendamento}": {
       "get": {
         "tags": [
@@ -922,7 +956,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Servicos"
+                  "$ref": "#/components/schemas/ServicosCoordenador"
                 }
               }
             }
@@ -1026,6 +1060,58 @@
         "responses": {
           "204": {
             "description": "Serviço deletado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/coordenador/servicos/{idservico}/professores/{idprofessor}": {
+      "post": {
+        "description": "Vincular professor ao serviço",
+        "tags": [
+          "Coordenador"
+        ],
+        "responses": {
+          "201": {
+            "description": "Professor vinculado ao serviço com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Desvincular professor do serviço",
+        "tags": [
+          "Coordenador"
+        ],
+        "responses": {
+          "204": {
+            "description": "Professor desvinculado com sucesso!"
           },
           "401": {
             "$ref": "#/components/responses/Erro"
@@ -1731,6 +1817,41 @@
           "$ref": "#/components/schemas/Servico"
         }
       },
+      "ServicoCoordenador": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Consulta"
+          },
+          "professores": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": "12"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Filipe Luís"
+                }
+              }
+            }
+          }
+        }
+      },
+      "ServicosCoordenador": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ServicoCoordenador"
+        }
+      },
       "Unidade": {
         "type": "object",
         "properties": {
@@ -2244,6 +2365,13 @@
           "id_categoria": {
             "type": "integer",
             "example": 10
+          },
+          "ids_professores": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "description": "Id's dos professores que devem ser vinculados ao serviço"
+            }
           }
         },
         "required": [
