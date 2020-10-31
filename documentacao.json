@@ -871,40 +871,6 @@
         ]
       }
     },
-    "/coordenador/unidades": {
-      "get": {
-        "tags": [
-          "Coordenador"
-        ],
-        "responses": {
-          "200": {
-            "description": "Retorno com as unidades em que o coordenador exerce o cargo",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MasterUnidades"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Erro de servidor",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Erro"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "autenticacao": []
-          }
-        ]
-      }
-    },
     "/coordenador/categorias": {
       "get": {
         "tags": [
