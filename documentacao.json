@@ -736,6 +736,45 @@
       }
     },
     "/master/usuarios": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "description": "Todas os usuários",
+        "responses": {
+          "200": {
+            "description": "Retorno com informações dos usuários",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuarios"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
       "post": {
         "tags": [
           "Administrador master"
@@ -1924,8 +1963,14 @@
           },
           "tipo": {
             "type": "string",
-            "example": "teste@ftc.edu.br"
+            "example": "Coordenador"
           }
+        }
+      },
+      "Usuarios": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Usuario"
         }
       },
       "MasterUnidade": {
