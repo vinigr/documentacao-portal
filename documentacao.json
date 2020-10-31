@@ -2180,10 +2180,6 @@
             "description": "Duração de cada atendimento em minutos",
             "type": "integer",
             "example": 30
-          },
-          "id_servico": {
-            "type": "integer",
-            "example": "12"
           }
         },
         "required": [
@@ -2210,10 +2206,6 @@
             "description": "Duração de cada atendimento em minutos",
             "type": "integer",
             "example": 30
-          },
-          "id_servico": {
-            "type": "integer",
-            "example": "12"
           },
           "id_professor": {
             "type": "integer",
