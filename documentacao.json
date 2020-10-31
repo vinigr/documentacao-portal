@@ -439,6 +439,38 @@
       }
     },
     "/master/unidades/{idunidade}": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações da unidade",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterUnidade"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
       "put": {
         "tags": [
           "Administrador master"
@@ -509,7 +541,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Categorias"
+                  "$ref": "#/components/schemas/MasterCategorias"
                 }
               }
             }
@@ -574,6 +606,44 @@
       }
     },
     "/master/categorias/{idcategoria}": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações da categoria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MasterCategoria"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
       "put": {
         "tags": [
           "Administrador master"
@@ -633,7 +703,7 @@
         ]
       }
     },
-    "/master/unidades/{id_unidade}/postagens": {
+    "/master/unidades/{idunidade}/postagens": {
       "get": {
         "tags": [
           "Administrador master"
@@ -710,6 +780,44 @@
       }
     },
     "/master/postagens/{idpostagem}": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações da postagem",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Postagem"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
       "put": {
         "tags": [
           "Administrador master"
@@ -844,6 +952,44 @@
       }
     },
     "/master/usuarios/{idusuario}": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações do usuário",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
       "put": {
         "tags": [
           "Administrador master"
@@ -1839,6 +1985,38 @@
           "$ref": "#/components/schemas/Categoria"
         }
       },
+      "MasterCategoria": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Odontologia"
+          },
+          "coordenador": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": "12"
+              },
+              "nome": {
+                "type": "string",
+                "example": "Filipe Luís"
+              }
+            }
+          }
+        }
+      },
+      "MasterCategorias": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MasterCategoria"
+        }
+      },
       "Servico": {
         "type": "object",
         "properties": {
@@ -2220,6 +2398,10 @@
             "type": "string"
           },
           "id_unidade": {
+            "type": "integer",
+            "example": 10
+          },
+          "id_categoria": {
             "type": "integer",
             "example": 10
           },
