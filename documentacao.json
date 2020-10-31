@@ -946,6 +946,46 @@
       }
     },
     "/coordenador/categorias/{idcategoria}/servicos": {
+      "get": {
+        "tags": [
+          "Coordenador"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações dos serviços da categorias",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Servicos"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/coordenador/servicos/{idservico}": {
       "post": {
         "tags": [
           "Coordenador"
@@ -978,9 +1018,7 @@
             "autenticacao": []
           }
         ]
-      }
-    },
-    "/coordenador/categorias/{idcategoria}/servicos/{idservico}": {
+      },
       "put": {
         "tags": [
           "Coordenador"
@@ -1662,7 +1700,7 @@
           },
           "tipo": {
             "type": "string",
-            "example": "professor",
+            "example": "Professor",
             "enum": [
               "Professor",
               "Diretor",
