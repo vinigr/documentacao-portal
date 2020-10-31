@@ -905,6 +905,47 @@
         ]
       }
     },
+    "/master/usuarios/{tipousuario}": {
+      "get": {
+        "tags": [
+          "Administrador master"
+        ],
+        "description": "Todas os usuários",
+        "responses": {
+          "200": {
+            "description": "Retorno com informações dos usuários do tipo solicitado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuarios"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
     "/coordenador/categorias": {
       "get": {
         "tags": [
