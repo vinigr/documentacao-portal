@@ -2166,6 +2166,12 @@
       "AbrirAgenda": {
         "type": "object",
         "properties": {
+          "dias": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dia"
+            }
+          },
           "hora_inicial": {
             "description": "Hora de inicio dos atendimentos no formato hh:mm",
             "type": "string",
@@ -2192,6 +2198,12 @@
       "CoordenadorAbrirAgenda": {
         "type": "object",
         "properties": {
+          "dias": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dia"
+            }
+          },
           "hora_inicial": {
             "description": "Hora de inicio dos atendimentos no formato hh:mm",
             "type": "string",
