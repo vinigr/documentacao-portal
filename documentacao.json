@@ -616,7 +616,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MasterCategoria"
+                  "$ref": "#/components/schemas/CategoriaPorId"
                 }
               }
             }
@@ -1983,6 +1983,45 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Categoria"
+        }
+      },
+      "CategoriaPorId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Odontologia"
+          },
+          "coordenador": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": "12"
+              },
+              "nome": {
+                "type": "string",
+                "example": "Filipe Luís"
+              }
+            }
+          },
+          "unidade": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": "12"
+              },
+              "nome": {
+                "type": "string",
+                "example": "Salvador"
+              }
+            }
+          }
         }
       },
       "MasterCategoria": {
