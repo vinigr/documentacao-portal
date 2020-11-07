@@ -2226,7 +2226,7 @@
             "type": "string",
             "example": "2020-10-17T13:25:42.171Z"
           },
-          "atentende": {
+          "atendente": {
             "type": "string"
           },
           "cliente": {
@@ -2358,7 +2358,7 @@
             "type": "string",
             "example": "Triste fim para Policarpo Quaresma"
           },
-          "atentende": {
+          "atendente": {
             "type": "string",
             "example": "Maurício Isla"
           },
@@ -2649,7 +2649,7 @@
             "type": "string",
             "example": "2020-10-17T13:25:42.171Z"
           },
-          "atentende": {
+          "atendente": {
             "type": "string"
           },
           "responsavel_cancelamento": {
@@ -2703,7 +2703,7 @@
             "type": "integer",
             "example": 30
           },
-          "atentende": {
+          "atendente": {
             "type": "string"
           }
         }
