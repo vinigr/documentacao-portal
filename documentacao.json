@@ -1132,6 +1132,46 @@
         ]
       }
     },
+    "/coordenador/professores": {
+      "get": {
+        "tags": [
+          "Coordenador"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de professores",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioSimples"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
     "/coordenador/categorias/{idcategoria}/servicos": {
       "get": {
         "tags": [
@@ -2370,6 +2410,19 @@
           "id_diretor": {
             "type": "integer",
             "example": 15
+          }
+        }
+      },
+      "UsuarioSimples": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Diego Alves"
           }
         }
       },
