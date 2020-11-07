@@ -1172,7 +1172,7 @@
         ]
       }
     },
-    "/coordenador/servicos/{idservico}": {
+    "/coordenador/servicos": {
       "post": {
         "tags": [
           "Coordenador"
@@ -1198,6 +1198,46 @@
           },
           "500": {
             "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/coordenador/servicos/{idservico}": {
+      "get": {
+        "tags": [
+          "Coordenador"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações dos serviços da categorias",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoCoordenador"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
           }
         },
         "security": [
