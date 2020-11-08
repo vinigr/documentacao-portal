@@ -33,9 +33,7 @@
   "paths": {
     "/autenticacao": {
       "post": {
-        "tags": [
-          "Autenticação"
-        ],
+        "tags": ["Autenticação"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -81,9 +79,7 @@
     },
     "/cadastro": {
       "post": {
-        "tags": [
-          "Autenticação"
-        ],
+        "tags": ["Autenticação"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -129,9 +125,7 @@
     },
     "/professor/servicos/{idservico}/agendamentos": {
       "post": {
-        "tags": [
-          "Professor"
-        ],
+        "tags": ["Professor"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -165,9 +159,7 @@
     "/professor/servicos": {
       "get": {
         "description": "Busca dos serviços vinculados ao professor",
-        "tags": [
-          "Professor"
-        ],
+        "tags": ["Professor"],
         "responses": {
           "200": {
             "description": "Busca dos serviços realizada com sucesso",
@@ -198,9 +190,7 @@
     },
     "/professor/servicos/{idservico}/agendamentos/{idagendamento}": {
       "get": {
-        "tags": [
-          "Professor"
-        ],
+        "tags": ["Professor"],
         "responses": {
           "200": {
             "description": "Busca do agendamento realizada com sucesso",
@@ -229,9 +219,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "Professor"
-        ],
+        "tags": ["Professor"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -263,9 +251,23 @@
       },
       "delete": {
         "description": "Cancelar agendamento",
-        "tags": [
-          "Professor"
-        ],
+        "tags": ["Professor"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "justificativa": {
+                    "type": "string",
+                    "example": "Deu ruim!",
+                    "description": "Justificativa para o cancelamento"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "description": "Agendamento cancelado com sucesso!"
@@ -289,9 +291,7 @@
     },
     "/professor/agendamentos": {
       "post": {
-        "tags": [
-          "Professor"
-        ],
+        "tags": ["Professor"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -331,9 +331,7 @@
     },
     "/diretor/relatorios": {
       "post": {
-        "tags": [
-          "Diretor"
-        ],
+        "tags": ["Diretor"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -373,9 +371,7 @@
     },
     "/master/unidades": {
       "post": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -406,9 +402,7 @@
         ]
       },
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "200": {
             "description": "Retorno com informações das unidades",
@@ -440,9 +434,7 @@
     },
     "/master/unidades/{idunidade}": {
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "200": {
             "description": "Retorno com informações da unidade",
@@ -472,9 +464,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -506,9 +496,7 @@
       },
       "delete": {
         "description": "Deletar categoria",
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "204": {
             "description": "Categoria editada com sucesso!"
@@ -532,9 +520,7 @@
     },
     "/master/unidades/{idunidade}/categorias": {
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "200": {
             "description": "Retorno com informações das categorias",
@@ -572,9 +558,7 @@
     },
     "/master/categorias": {
       "post": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -607,9 +591,7 @@
     },
     "/master/categorias/{idcategoria}": {
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "200": {
             "description": "Retorno com informações da categoria",
@@ -645,9 +627,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -679,9 +659,7 @@
       },
       "delete": {
         "description": "Deletar categoria",
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "201": {
             "description": "Categoria deletada com sucesso!"
@@ -705,9 +683,7 @@
     },
     "/master/unidades/{idunidade}/postagens": {
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "description": "Todas as postagens",
         "responses": {
           "200": {
@@ -746,9 +722,7 @@
     },
     "/master/postagens": {
       "post": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -781,9 +755,7 @@
     },
     "/master/postagens/{idpostagem}": {
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "200": {
             "description": "Retorno com informações da postagem",
@@ -819,9 +791,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -853,9 +823,7 @@
       },
       "delete": {
         "description": "Deletar postagem",
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "201": {
             "description": "Postagem deletada com sucesso!"
@@ -879,9 +847,7 @@
     },
     "/master/usuarios": {
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "description": "Todas os usuários",
         "responses": {
           "200": {
@@ -918,9 +884,7 @@
         ]
       },
       "post": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -953,9 +917,7 @@
     },
     "/master/usuarios/{idusuario}": {
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "200": {
             "description": "Retorno com informações do usuário",
@@ -991,9 +953,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1024,9 +984,7 @@
         ]
       },
       "delete": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "responses": {
           "202": {
             "description": "Usuário removido com sucesso!"
@@ -1053,9 +1011,7 @@
     },
     "/master/usuarios/{tipousuario}": {
       "get": {
-        "tags": [
-          "Administrador master"
-        ],
+        "tags": ["Administrador master"],
         "description": "Todas os usuários",
         "responses": {
           "200": {
@@ -1094,9 +1050,7 @@
     },
     "/coordenador/categorias": {
       "get": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "responses": {
           "200": {
             "description": "Retorno com informações das categorias",
@@ -1134,9 +1088,7 @@
     },
     "/coordenador/professores": {
       "get": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "responses": {
           "200": {
             "description": "Lista de professores",
@@ -1174,9 +1126,7 @@
     },
     "/coordenador/categorias/{idcategoria}/servicos": {
       "get": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "responses": {
           "200": {
             "description": "Retorno com informações dos serviços da categorias",
@@ -1214,9 +1164,7 @@
     },
     "/coordenador/servicos": {
       "post": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1249,9 +1197,7 @@
     },
     "/coordenador/servicos/{idservico}": {
       "get": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "responses": {
           "200": {
             "description": "Retorno com informações dos serviços da categorias",
@@ -1287,9 +1233,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1321,9 +1265,7 @@
       },
       "delete": {
         "description": "Deletar serviço",
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "responses": {
           "204": {
             "description": "Serviço deletado com sucesso!"
@@ -1348,9 +1290,7 @@
     "/coordenador/servicos/{idservico}/professores/{idprofessor}": {
       "post": {
         "description": "Vincular professor ao serviço",
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "responses": {
           "201": {
             "description": "Professor vinculado ao serviço com sucesso!"
@@ -1373,9 +1313,7 @@
       },
       "delete": {
         "description": "Desvincular professor do serviço",
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "responses": {
           "204": {
             "description": "Professor desvinculado com sucesso!"
@@ -1399,9 +1337,7 @@
     },
     "/coordenador/servicos/{idservico}/agendamentos": {
       "post": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1437,9 +1373,7 @@
     },
     "/coordenador/postagens": {
       "get": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "description": "Postagens relacionadas as categorias em que o usuário é o coordenador",
         "responses": {
           "200": {
@@ -1476,9 +1410,7 @@
         ]
       },
       "post": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1511,9 +1443,7 @@
     },
     "/coordenador/postagens/{idpostagem}": {
       "put": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1545,9 +1475,7 @@
       },
       "delete": {
         "description": "Deletar postagem",
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "responses": {
           "201": {
             "description": "Postagem deletada com sucesso!"
@@ -1571,9 +1499,7 @@
     },
     "/coordenador/relatorios": {
       "post": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1613,9 +1539,7 @@
     },
     "/coordenador/relatorio/cancelados/servicos": {
       "post": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1655,9 +1579,7 @@
     },
     "/coordenador/relatorio/cancelados/servicos/{idservico}": {
       "post": {
-        "tags": [
-          "Coordenador"
-        ],
+        "tags": ["Coordenador"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1697,9 +1619,7 @@
     },
     "/cliente/unidades": {
       "get": {
-        "tags": [
-          "Cliente/Paciente"
-        ],
+        "tags": ["Cliente/Paciente"],
         "responses": {
           "200": {
             "description": "Retorno com informações das unidades",
@@ -1726,9 +1646,7 @@
     },
     "/cliente/unidades/{idunidade}/postagens": {
       "get": {
-        "tags": [
-          "Cliente/Paciente"
-        ],
+        "tags": ["Cliente/Paciente"],
         "responses": {
           "200": {
             "description": "Retorno com postagens que podem ser visualizadas pelos clientes",
@@ -1755,9 +1673,7 @@
     },
     "/cliente/unidades/{idunidade}/categorias": {
       "get": {
-        "tags": [
-          "Cliente/Paciente"
-        ],
+        "tags": ["Cliente/Paciente"],
         "responses": {
           "200": {
             "description": "Retorno com informações das categorias",
@@ -1784,9 +1700,7 @@
     },
     "/cliente/categorias/{idcategoria}/servicos": {
       "get": {
-        "tags": [
-          "Cliente/Paciente"
-        ],
+        "tags": ["Cliente/Paciente"],
         "responses": {
           "200": {
             "description": "Retorno com informações dos servicos",
@@ -1813,9 +1727,7 @@
     },
     "/cliente/servicos/{idservico}/agendas": {
       "post": {
-        "tags": [
-          "Cliente/Paciente"
-        ],
+        "tags": ["Cliente/Paciente"],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1851,9 +1763,7 @@
     },
     "/cliente/servicos/agendamento/{idagenda}": {
       "post": {
-        "tags": [
-          "Cliente/Paciente"
-        ],
+        "tags": ["Cliente/Paciente"],
         "responses": {
           "201": {
             "description": "Agendamento realizado com sucesso!"
@@ -1877,9 +1787,7 @@
     },
     "/cliente/agendamentos": {
       "get": {
-        "tags": [
-          "Cliente/Paciente"
-        ],
+        "tags": ["Cliente/Paciente"],
         "responses": {
           "200": {
             "description": "Retorno com informações dos agendamentos realizados pelo cliente",
@@ -1918,9 +1826,7 @@
     "/cliente/agendamentos/{idagendamento}/cancelar": {
       "post": {
         "description": "Utilizar quando o cliente desejar cancelar um agendamento",
-        "tags": [
-          "Cliente/Paciente"
-        ],
+        "tags": ["Cliente/Paciente"],
         "responses": {
           "201": {
             "description": "Agendamento cancelado com sucesso!"
@@ -1958,10 +1864,7 @@
     },
     "schemas": {
       "Login": {
-        "required": [
-          "email",
-          "senha"
-        ],
+        "required": ["email", "senha"],
         "type": "object",
         "properties": {
           "email": {
@@ -1975,11 +1878,7 @@
         }
       },
       "Cadastro": {
-        "required": [
-          "nome",
-          "email",
-          "senha"
-        ],
+        "required": ["nome", "email", "senha"],
         "type": "object",
         "properties": {
           "nome": {
@@ -1997,12 +1896,7 @@
         }
       },
       "CadastroFuncionario": {
-        "required": [
-          "nome",
-          "email",
-          "senha",
-          "tipo"
-        ],
+        "required": ["nome", "email", "senha", "tipo"],
         "type": "object",
         "properties": {
           "nome": {
@@ -2020,11 +1914,7 @@
           "tipo": {
             "type": "string",
             "example": "Professor",
-            "enum": [
-              "Professor",
-              "Diretor",
-              "Coordenador"
-            ]
+            "enum": ["Professor", "Diretor", "Coordenador"]
           }
         }
       },
@@ -2307,12 +2197,7 @@
             "example": 30
           }
         },
-        "required": [
-          "hora_inicial",
-          "hora_final",
-          "duracao",
-          "id_servico"
-        ]
+        "required": ["hora_inicial", "hora_final", "duracao", "id_servico"]
       },
       "CoordenadorAbrirAgenda": {
         "type": "object",
@@ -2396,9 +2281,7 @@
             "example": 15
           }
         },
-        "required": [
-          "nome"
-        ]
+        "required": ["nome"]
       },
       "EditarUnidade": {
         "type": "object",
@@ -2501,10 +2384,7 @@
             "example": 15
           }
         },
-        "required": [
-          "nome",
-          "id_unidade"
-        ]
+        "required": ["nome", "id_unidade"]
       },
       "EditarCategoria": {
         "type": "object",
@@ -2578,10 +2458,7 @@
             "example": "2020-10-17T13:25:42.171Z"
           }
         },
-        "required": [
-          "titulo",
-          "mensagem"
-        ]
+        "required": ["titulo", "mensagem"]
       },
       "EditarPostagem": {
         "type": "object",
@@ -2612,11 +2489,7 @@
           "tipo": {
             "type": "string",
             "description": "O tipo que usuário deve ser alterado",
-            "enum": [
-              "Coordenador",
-              "Diretor",
-              "Professor"
-            ]
+            "enum": ["Coordenador", "Diretor", "Professor"]
           }
         }
       },
@@ -2733,10 +2606,7 @@
             }
           }
         },
-        "required": [
-          "nome",
-          "id_categoria"
-        ]
+        "required": ["nome", "id_categoria"]
       },
       "EditarServico": {
         "type": "object",
@@ -2772,13 +2642,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": [
-                "cancelado",
-                "desistente",
-                "atendido",
-                "ausente",
-                "vago"
-              ]
+              "enum": ["cancelado", "desistente", "atendido", "ausente", "vago"]
             },
             "description": "Status dos atendimentos a serem comparados"
           }
@@ -2870,13 +2734,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": [
-                "cancelado",
-                "desistente",
-                "atendido",
-                "ausente",
-                "vago"
-              ]
+              "enum": ["cancelado", "desistente", "atendido", "ausente", "vago"]
             },
             "description": "Status dos atendimentos a serem comparados"
           }
