@@ -1823,8 +1823,8 @@
         ]
       }
     },
-    "/cliente/agendamentos/{idagendamento}/cancelar": {
-      "post": {
+    "/cliente/agendamentos/{idagendamento}": {
+      "delete": {
         "description": "Utilizar quando o cliente desejar cancelar um agendamento",
         "tags": ["Cliente/Paciente"],
         "responses": {
