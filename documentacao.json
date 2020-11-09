@@ -1014,7 +1014,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CadastroFuncionario"
+                "$ref": "#/components/schemas/EdicaoUsuario"
               }
             }
           }
@@ -1054,6 +1054,41 @@
             "$ref": "#/components/responses/Erro"
           },
           "404": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/master/usuarios/atualizarSenha/{idusuario}": {
+      "put": {
+        "tags": [
+          "Administrador master"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtualizacaoSenha"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Senha atualizada com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
             "$ref": "#/components/responses/Erro"
           },
           "500": {
@@ -2041,6 +2076,41 @@
               "Diretor",
               "Coordenador"
             ]
+          }
+        }
+      },
+      "EdicaoUsuario": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "João Paulo"
+          },
+          "email": {
+            "type": "string",
+            "example": "joaozinho@ftc.edu.br"
+          },
+          "tipo": {
+            "type": "string",
+            "example": "Professor",
+            "enum": [
+              "Professor",
+              "Diretor",
+              "Coordenador"
+            ]
+          }
+        }
+      },
+      "AtualizacaoSenha": {
+        "required": [
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "senha": {
+            "type": "string",
+            "example": "123456789",
+            "minLength": 6
           }
         }
       },
