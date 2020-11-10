@@ -15,6 +15,10 @@
       "description": "Para se autenticar na API"
     },
     {
+      "name": "Usuário",
+      "description": "Disponível para todos os usuários autenticados"
+    },
+    {
       "name": "Administrador master"
     },
     {
@@ -125,6 +129,110 @@
             }
           }
         }
+      }
+    },
+    "/minhaConta": {
+      "get": {
+        "description": "Busca os dados do usuário logado",
+        "tags": [
+          "Usuário"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno dos dados do usuário logado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioLogado"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/atualizarDados": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EdicaoPropriosDados"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário editado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
+    "/atualizarSenha": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AtualizacaoSenhaPropria"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário editado com sucesso!"
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
       }
     },
     "/professor/servicos/{idservico}/agendamentos": {
@@ -2101,6 +2209,36 @@
           }
         }
       },
+      "EdicaoPropriosDados": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "João Paulo"
+          },
+          "email": {
+            "type": "string",
+            "example": "joaozinho@ftc.edu.br"
+          }
+        }
+      },
+      "AtualizacaoSenhaPropria": {
+        "required": [
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "senha_atual": {
+            "type": "string",
+            "example": "123456789"
+          },
+          "senha": {
+            "type": "string",
+            "example": "123456",
+            "minLength": 6
+          }
+        }
+      },
       "AtualizacaoSenha": {
         "required": [
           "senha"
@@ -2537,6 +2675,23 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Usuario"
+        }
+      },
+      "UsuarioLogado": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": "12"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Diego Alves"
+          },
+          "email": {
+            "type": "string",
+            "example": "teste@ftc.edu.br"
+          }
         }
       },
       "MasterUnidade": {
