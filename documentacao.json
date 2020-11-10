@@ -166,7 +166,7 @@
       }
     },
     "/atualizarDados": {
-      "post": {
+      "put": {
         "tags": [
           "Usuário"
         ],
@@ -201,7 +201,7 @@
       }
     },
     "/atualizarSenha": {
-      "post": {
+      "put": {
         "tags": [
           "Usuário"
         ],
