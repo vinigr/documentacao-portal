@@ -2224,6 +2224,7 @@
       },
       "AtualizacaoSenhaPropria": {
         "required": [
+          "senha_atual",
           "senha"
         ],
         "type": "object",
