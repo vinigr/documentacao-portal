@@ -2447,6 +2447,10 @@
             "type": "integer",
             "example": 777
           },
+          "id_servico": {
+            "type": "integer",
+            "example": 40
+          },
           "data_hora": {
             "type": "string",
             "example": "2020-10-17T13:25:42.171Z"
