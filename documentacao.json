@@ -368,8 +368,10 @@
             "autenticacao": []
           }
         ]
-      },
-      "delete": {
+      }
+    },
+    "/professor/servicos/{idservico}/agendamentos/{idagendamento}/cancelar": {
+      "post": {
         "description": "Cancelar agendamento",
         "tags": [
           "Professor"
