@@ -2047,7 +2047,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AgendasCliente"
+                  "$ref": "#/components/schemas/AgendamentosCliente"
                 }
               }
             }
@@ -3158,6 +3158,67 @@
                 }
               },
               "description": "Status dos atendimentos a serem comparados"
+            }
+          }
+        }
+      },
+      "AgendamentosCliente": {
+        "items": {
+          "$ref": "#/components/schemas/AgendamentoCliente"
+        }
+      },
+      "AgendamentoCliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 777
+          },
+          "data_hora": {
+            "type": "string",
+            "example": "2020-10-17T13:25:42.171Z"
+          },
+          "responsavel_cancelamento": {
+            "type": "object",
+            "properties": {
+              "nome": {
+                "type": "string",
+                "example": "Professor Júnior"
+              }
+            }
+          },
+          "justificativa_cancelamento": {
+            "type": "string",
+            "example": "Professor não pode comparecer"
+          },
+          "atendido": {
+            "type": "boolean",
+            "example": true
+          },
+          "servico": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 7
+              },
+              "nome": {
+                "type": "string",
+                "example": "Consulta"
+              },
+              "categoria": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 774
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "Odontologia"
+                  }
+                }
+              }
             }
           }
         }
