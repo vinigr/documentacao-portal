@@ -1772,7 +1772,7 @@
         ]
       }
     },
-    "/coordenador/relatorio/cancelados/servicos": {
+    "/coordenador/relatorio/cancelado/servicos": {
       "post": {
         "tags": [
           "Coordenador"
@@ -3087,13 +3087,48 @@
         "items": {
           "type": "object",
           "properties": {
-            "servico": {
+            "id": {
               "type": "string",
+              "example": 10
+            },
+            "nome": {
+              "type": "string",
+              "example": "Consulta",
               "description": "Nome do serviço"
             },
-            "agendamentos": {
-              "$ref": "#/components/schemas/RetornoRelatorioCancelados"
+            "agendas": {
+              "$ref": "#/components/schemas/AgendaRelatorioCancelados"
             }
+          }
+        }
+      },
+      "AgendaRelatorioCancelados": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 777
+          },
+          "data_hora": {
+            "type": "string",
+            "example": "2020-10-17T13:25:42.171Z"
+          },
+          "responsavel_cancelamento": {
+            "type": "object",
+            "properties": {
+              "nome": {
+                "type": "string",
+                "example": "Professor Júnior"
+              }
+            }
+          },
+          "justificativa_cancelamento": {
+            "type": "string",
+            "example": "Professor não pode comparecer"
+          },
+          "atendido": {
+            "type": "boolean",
+            "example": false
           }
         }
       },
