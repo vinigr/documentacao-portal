@@ -455,6 +455,46 @@
         ]
       }
     },
+    "/diretor/categorias": {
+      "get": {
+        "tags": [
+          "Diretor"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das categorias",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categorias"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
     "/diretor/relatorios": {
       "post": {
         "tags": [
@@ -1814,7 +1854,7 @@
         ]
       }
     },
-    "/coordenador/relatorio/cancelados/servicos/{idservico}": {
+    "/coordenador/relatorio/cancelado/servicos/{idservico}": {
       "post": {
         "tags": [
           "Coordenador"
