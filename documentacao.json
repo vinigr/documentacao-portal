@@ -2738,6 +2738,10 @@
           "email": {
             "type": "string",
             "example": "teste@ftc.edu.br"
+          },
+          "tipo_usuario": {
+            "type": "string",
+            "example": "Coordenador"
           }
         }
       },
