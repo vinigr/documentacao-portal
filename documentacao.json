@@ -455,6 +455,48 @@
         ]
       }
     },
+    "/professor/servicos/{idservico}/agendamentos_responsavel": {
+      "post": {
+        "tags": [
+          "Professor"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Intervalo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retorno com os agendamentos de quem o professor é responsável no serviço informado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendas"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "$ref": "#/components/responses/Erro"
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      }
+    },
     "/diretor/categorias": {
       "get": {
         "tags": [
@@ -1711,6 +1753,45 @@
       }
     },
     "/coordenador/postagens/{idpostagem}": {
+      "get": {
+        "tags": [
+          "Coordenador"
+        ],
+        "description": "Postagens relacionadas as categorias em que o usuário é o coordenador",
+        "responses": {
+          "200": {
+            "description": "Retorno com informações das postagens",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Postagem"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "403": {
+            "$ref": "#/components/responses/Erro"
+          },
+          "500": {
+            "description": "Erro de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erro"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "autenticacao": []
+          }
+        ]
+      },
       "put": {
         "tags": [
           "Coordenador"
